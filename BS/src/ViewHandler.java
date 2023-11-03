@@ -3,6 +3,7 @@ import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 
 public class ViewHandler implements HttpHandler {
     @Override
@@ -14,7 +15,7 @@ public class ViewHandler implements HttpHandler {
             response.append("<tr><td>").append(contact.name).append("</td><td>").append(contact.address).append("</td><td>").append(contact.phoneNumber).append("</td></tr>");
         }
         response.append("</table></body></html>");
-        byte[] bytes = response.toString().getBytes("UTF-8"); // 设置字符编码为 UTF-8
+        byte[] bytes = response.toString().getBytes(StandardCharsets.UTF_8); // 设置字符编码为 UTF-8
         t.getResponseHeaders().add("Content-Type", "text/html; charset=UTF-8"); // 添加字符编码标头
         t.sendResponseHeaders(200, bytes.length);
         OutputStream os = t.getResponseBody();

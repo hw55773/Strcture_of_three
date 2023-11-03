@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,9 +24,9 @@ public class AddHandler implements HttpHandler {
 
         String response = "联系人添加成功!";
         t.getResponseHeaders().add("Content-Type", "text/html; charset=UTF-8");
-        t.sendResponseHeaders(200, response.getBytes("UTF-8").length);
+        t.sendResponseHeaders(200, response.getBytes(StandardCharsets.UTF_8).length);
         OutputStream os = t.getResponseBody();
-        os.write(response.getBytes("UTF-8"));
+        os.write(response.getBytes(StandardCharsets.UTF_8));
         os.close();
     }
 

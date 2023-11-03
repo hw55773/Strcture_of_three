@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,9 +28,9 @@ public class EditHandler implements HttpHandler {
             if (nameToEdit == null || newName == null || newAddress == null || newPhoneNumber == null) {
                 String response = "缺少必要的参数!";
                 t.getResponseHeaders().add("Content-Type", "text/html; charset=UTF-8");
-                t.sendResponseHeaders(400, response.getBytes("UTF-8").length);
+                t.sendResponseHeaders(400, response.getBytes(StandardCharsets.UTF_8).length);
                 OutputStream os = t.getResponseBody();
-                os.write(response.getBytes("UTF-8"));
+                os.write(response.getBytes(StandardCharsets.UTF_8));
                 os.close();
                 return;
             }
@@ -48,26 +49,26 @@ public class EditHandler implements HttpHandler {
             if (!contactFound) {
                 String response = "联系人不存在!";
                 t.getResponseHeaders().add("Content-Type", "text/html; charset=UTF-8");
-                t.sendResponseHeaders(404, response.getBytes("UTF-8").length);
+                t.sendResponseHeaders(404, response.getBytes(StandardCharsets.UTF_8).length);
                 OutputStream os = t.getResponseBody();
-                os.write(response.getBytes("UTF-8"));
+                os.write(response.getBytes(StandardCharsets.UTF_8));
                 os.close();
                 return;
             }
 
             String response = "联系人修改成功!";
             t.getResponseHeaders().add("Content-Type", "text/html; charset=UTF-8");
-            t.sendResponseHeaders(200, response.getBytes("UTF-8").length);
+            t.sendResponseHeaders(200, response.getBytes(StandardCharsets.UTF_8).length);
             OutputStream os = t.getResponseBody();
-            os.write(response.getBytes("UTF-8"));
+            os.write(response.getBytes(StandardCharsets.UTF_8));
             os.close();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             String response = "无效请求!";
             t.getResponseHeaders().add("Content-Type", "text/html; charset=UTF-8");
-            t.sendResponseHeaders(400, response.getBytes("UTF-8").length);
+            t.sendResponseHeaders(400, response.getBytes(StandardCharsets.UTF_8).length);
             OutputStream os = t.getResponseBody();
-            os.write(response.getBytes("UTF-8"));
+            os.write(response.getBytes(StandardCharsets.UTF_8));
             os.close();
         }
     }

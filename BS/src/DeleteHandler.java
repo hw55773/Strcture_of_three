@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,24 +33,24 @@ public class DeleteHandler implements HttpHandler {
                 Main.contacts.remove(contactToRemove);
                 String response = "联系人删除成功!";
                 t.getResponseHeaders().add("Content-Type", "text/html; charset=UTF-8");
-                t.sendResponseHeaders(200, response.getBytes("UTF-8").length);
+                t.sendResponseHeaders(200, response.getBytes(StandardCharsets.UTF_8).length);
                 OutputStream os = t.getResponseBody();
-                os.write(response.getBytes("UTF-8"));
+                os.write(response.getBytes(StandardCharsets.UTF_8));
                 os.close();
             } else {
                 String response = "不能找到联系人!";
                 t.getResponseHeaders().add("Content-Type", "text/html; charset=UTF-8");
-                t.sendResponseHeaders(404, response.getBytes("UTF-8").length);
+                t.sendResponseHeaders(404, response.getBytes(StandardCharsets.UTF_8).length);
                 OutputStream os = t.getResponseBody();
-                os.write(response.getBytes("UTF-8"));
+                os.write(response.getBytes(StandardCharsets.UTF_8));
                 os.close();
             }
         } else {
             String response = "无效请求!";
             t.getResponseHeaders().add("Content-Type", "text/html; charset=UTF-8");
-            t.sendResponseHeaders(400, response.getBytes("UTF-8").length);
+            t.sendResponseHeaders(400, response.getBytes(StandardCharsets.UTF_8).length);
             OutputStream os = t.getResponseBody();
-            os.write(response.getBytes("UTF-8"));
+            os.write(response.getBytes(StandardCharsets.UTF_8));
             os.close();
         }
     }
